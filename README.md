@@ -457,7 +457,180 @@ Home
 - Usar padrões diferentes dos estabelecidos no projeto
 - Adicionar dependências sem avaliar necessidade
 
-## 10. Roadmap Técnico de Aprendizado
+## 10. Stack Recomendada para Backend e Banco de Dados (Futuro)
+
+### Decisão Arquitetural: NestJS + PostgreSQL
+
+Embora o MVP atual não inclua backend, para a evolução futura do projeto, recomenda-se a seguinte stack:
+
+#### Backend: **NestJS** (TypeScript)
+
+**Por que NestJS ao invés de Express?**
+
+1. **Consistência com Frontend**
+
+   - TypeScript end-to-end (mesma stack do mobile)
+   - Tipos compartilhados entre frontend e backend
+   - Mesma linguagem e ferramentas
+
+2. **Arquitetura Escalável**
+
+   - Arquitetura modular desde o início (similar ao Angular)
+   - Dependency Injection nativa
+   - Separação clara de responsabilidades (Modules, Controllers, Services, Repositories)
+   - Facilita evolução do MVP para produção
+
+3. **Melhor para Aprendizado**
+
+   - Padrões bem definidos (não precisa "inventar" arquitetura)
+   - Documentação excelente
+   - Convenções claras (decorators, pipes, guards)
+   - Testes integrados (Jest)
+
+4. **Ecossistema Completo**
+
+   - Integração nativa com TypeORM ou Prisma
+   - Suporte a GraphQL (se necessário no futuro)
+   - Validação com class-validator
+   - Autenticação JWT integrada
+   - Swagger/OpenAPI automático
+
+5. **Evolução Natural do MVP**
+   - Estrutura que cresce bem
+   - Não precisa refatorar para adicionar features
+   - Suporta microservices (se necessário muito no futuro)
+
+**Quando usar Express?**
+
+- Projetos muito simples (APIs REST básicas)
+- Equipe já experiente com Express
+- Precisa de controle total sobre estrutura
+- Projeto pequeno que não vai crescer muito
+
+#### Banco de Dados: **PostgreSQL**
+
+**Por que PostgreSQL ao invés de MySQL?**
+
+1. **Melhor para Dados Estruturados Complexos**
+
+   - Suporte nativo a JSON e JSONB (útil para conteúdo de lições, quizzes)
+   - Arrays nativos (útil para respostas de quiz, opções múltiplas)
+   - Tipos customizados e Enums
+   - Ideal para estruturas hierárquicas (roadmap → módulos → capítulos → lições)
+
+2. **Recursos Avançados**
+
+   - Full-text search nativo (útil para busca de lições/conteúdo)
+   - Window functions (úteis para cálculos de progresso)
+   - CTEs (Common Table Expressions) para queries complexas
+   - Transações mais robustas
+
+3. **Evolução e Escalabilidade**
+
+   - Melhor suporte a índices complexos
+   - Melhor performance em queries complexas
+   - Suporte a extensões (PostGIS, pg_trgm para busca)
+   - Open-source com comunidade ativa
+
+4. **Compatibilidade com NestJS**
+
+   - TypeORM funciona muito bem com PostgreSQL
+   - Prisma tem excelente suporte
+   - Migrations mais simples
+   - Tipos TypeScript gerados automaticamente
+
+5. **Para o Domínio do Projeto**
+   - Estrutura hierárquica (roadmap) mapeia bem para PostgreSQL
+   - Progresso de usuário pode usar JSONB para flexibilidade
+   - Conteúdo de lições pode usar JSONB para quizzes
+   - Queries complexas de progresso são mais simples
+
+**Quando usar MySQL?**
+
+- Projeto muito simples (CRUD básico)
+- Equipe já tem expertise em MySQL
+- Precisa de replicação master-slave simples
+- Projeto pequeno com dados tabulares simples
+
+### Stack Recomendada Completa (Futuro)
+
+```
+Frontend Mobile:
+  ├── Expo + React Native + TypeScript (atual)
+
+Backend:
+  ├── NestJS (TypeScript)
+  ├── TypeORM ou Prisma (ORM)
+  ├── class-validator (validação)
+  ├── @nestjs/jwt (autenticação)
+  └── @nestjs/swagger (documentação API)
+
+Banco de Dados:
+  ├── PostgreSQL 14+
+  └── Migrations com TypeORM/Prisma
+
+Infraestrutura (futuro):
+  ├── Docker (containerização)
+  ├── Docker Compose (desenvolvimento local)
+  └── Variáveis de ambiente (.env)
+```
+
+### Estrutura de Banco de Dados Sugerida
+
+Para o domínio do projeto (roadmap → módulos → capítulos → lições → progresso):
+
+```sql
+-- Estrutura hierárquica principal
+roadmaps
+modules (roadmap_id FK)
+chapters (module_id FK)
+lessons (chapter_id FK)
+
+-- Progresso e usuários
+users
+user_progress (user_id FK, lesson_id FK, completed_at, score)
+user_quiz_answers (user_id FK, lesson_id FK, question_id, answer)
+
+-- Conteúdo (podem usar JSONB)
+lesson_content (lesson_id FK, explanation JSONB, quiz JSONB)
+```
+
+### Migração do MVP para Backend
+
+Quando chegar a hora de adicionar backend:
+
+1. **Fase 1: API de Conteúdo**
+
+   - Migrar dados mockados para PostgreSQL
+   - Criar endpoints GET para roadmap, módulos, capítulos, lições
+   - App mobile consome API ao invés de dados locais
+
+2. **Fase 2: Autenticação e Usuários**
+
+   - Implementar registro/login
+   - JWT tokens
+   - Middleware de autenticação
+
+3. **Fase 3: Progresso Sincronizado**
+
+   - Migrar AsyncStorage para API
+   - Endpoints para salvar/carregar progresso
+   - Sincronização entre dispositivos
+
+4. **Fase 4: Features Avançadas**
+   - Analytics de progresso
+   - Rankings (se necessário)
+   - Notificações push
+   - Compartilhamento social
+
+### Recursos de Aprendizado
+
+- **NestJS**: [Documentação Oficial](https://docs.nestjs.com/)
+- **PostgreSQL**: [PostgreSQL Tutorial](https://www.postgresql.org/docs/)
+- **TypeORM**: [Documentação](https://typeorm.io/)
+- **Prisma**: [Documentação](https://www.prisma.io/docs/)
+
+## 11. Roadmap Técnico de Aprendizado
 
 ### Fase 1: Fundamentos e Estrutura (Atual)
 
