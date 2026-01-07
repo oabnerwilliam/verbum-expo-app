@@ -13,6 +13,8 @@ export const colors = {
     inverse: "#0E0E0E",
   },
   primary: { default: "#4988C4", hover: "#0F2854", text: "#FFFFFF" },
+  success: { default: "#4CAF50", hover: "#006400", text: "#FFFFFF" },
+  error: { default: "#F44336", hover: "#8B0000", text: "#FFFFFF" },
 }
 
 export const spacing = {

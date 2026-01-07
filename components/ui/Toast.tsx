@@ -1,7 +1,7 @@
 import { Ionicons } from "@expo/vector-icons"
 import { StyleSheet, Text, View } from "react-native"
-import { radius, spacing } from "../../styles/theme"
-import { typography } from "../../styles/typography"
+import { radius, spacing } from "../../core/styles/theme"
+import { typography } from "../../core/styles/typography"
 
 export const Toast = ({
   message,
@@ -52,4 +52,3 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
   },
 })
-

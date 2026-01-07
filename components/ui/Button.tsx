@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native"
-import { colors, radius, spacing } from "../../styles/theme"
-import { typography } from "../../styles/typography"
+import { colors, radius, spacing } from "../../core/styles/theme"
+import { typography } from "../../core/styles/typography"
 
 export const Button = ({
   children,

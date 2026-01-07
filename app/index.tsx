@@ -1,5 +1,5 @@
-import { colors, spacing } from "@/styles/theme"
-import { typography } from "@/styles/typography"
+import { colors, spacing } from "@/core/styles/theme"
+import { typography } from "@/core/styles/typography"
 import { router } from "expo-router"
 import { StatusBar } from "expo-status-bar"
 import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native"
