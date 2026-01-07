@@ -1,5 +1,6 @@
 import { colors, spacing } from "@/styles/theme"
 import { typography } from "@/styles/typography"
+import { router } from "expo-router"
 import { StatusBar } from "expo-status-bar"
 import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native"
 import { Button } from "../components/ui/Button"
@@ -25,8 +26,9 @@ export default function HomeScreen() {
 
         <View style={styles.screen}>
           <View style={styles.contentContainer}>
-            <Button variant="secondary">Começar agora</Button>
-            <Button variant="primary">Fazer Login</Button>
+            <Button variant="secondary" onPress={() => router.push("/quiz")}>
+              Começar agora
+            </Button>
           </View>
         </View>
       </ScrollView>
