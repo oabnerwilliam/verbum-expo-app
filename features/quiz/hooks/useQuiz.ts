@@ -34,6 +34,13 @@ export const useQuiz = ({ correctAnswerId }: UseQuizProps) => {
     return null
   }
 
+  const reset = () => {
+    setAnswered(null)
+    setIsAnswered(false)
+    setShowToast(false)
+    setToastType(null)
+  }
+
   return {
     answered,
     setAnswered,
@@ -41,5 +48,6 @@ export const useQuiz = ({ correctAnswerId }: UseQuizProps) => {
     showToast,
     toastType,
     getOptionStatus,
+    reset,
   }
 }
