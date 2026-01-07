@@ -6,6 +6,6 @@ export function Text({ style, ...props }: TextProps) {
 
 const styles = StyleSheet.create({
   default: {
-    fontFamily: "NunitoSans_400Regular",
+    fontFamily: "Rubik_400Regular",
   },
 })

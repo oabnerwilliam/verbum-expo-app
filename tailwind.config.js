@@ -6,9 +6,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["NunitoSans_400Regular"],
-        "sans-semibold": ["NunitoSans_600SemiBold"],
-        "sans-bold": ["NunitoSans_700Bold"],
+        sans: ["Rubik_400Regular"],
+        "sans-medium": ["Rubik_500Medium"],
+        "sans-semibold": ["Rubik_600SemiBold"],
+        "sans-bold": ["Rubik_700Bold"],
       },
     },
   },
