@@ -2,3 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  * {
+    font-family: "NunitoSans_400Regular", sans-serif;
+  }
+}
