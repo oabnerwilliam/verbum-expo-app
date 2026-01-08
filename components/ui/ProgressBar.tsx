@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.md,
   },
   track: {
-    height: 4,
+    height: 20,
     backgroundColor: colors.surface.default,
     borderRadius: radius.sm,
     overflow: "hidden",

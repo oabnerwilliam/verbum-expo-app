@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 type UseQuizProps = {
   correctAnswerId: number
@@ -11,6 +11,15 @@ export const useQuiz = ({ correctAnswerId }: UseQuizProps) => {
   const [toastType, setToastType] = useState<"correct" | "incorrect" | null>(
     null
   )
+  const [selected, setSelected] = useState<number | null>(null)
+
+  useEffect(() => {
+    setSelected(null)
+    setAnswered(null)
+    setIsAnswered(false)
+    setShowToast(false)
+    setToastType(null)
+  }, [correctAnswerId])
 
   useEffect(() => {
     if (answered !== null) {
@@ -33,21 +42,39 @@ export const useQuiz = ({ correctAnswerId }: UseQuizProps) => {
     }
     return null
   }
+  const getOptionSelected = (optionId: number): boolean => {
+    if (selected === null) return false
+    if (selected === optionId) return true
+    return false
+  }
 
-  const reset = () => {
+  const setSelectedOption = useCallback((optionId: number) => {
+    if (selected === null) {
+      setSelected(optionId)
+    } else {
+      setSelected(null)
+    }
+  }, [])
+
+  const reset = useCallback(() => {
     setAnswered(null)
     setIsAnswered(false)
     setShowToast(false)
     setToastType(null)
-  }
+    setSelected(null)
+  }, [])
 
   return {
     answered,
     setAnswered,
+    selected,
+    setSelected,
+    setSelectedOption,
     isAnswered,
     showToast,
     toastType,
     getOptionStatus,
+    getOptionSelected,
     reset,
   }
 }

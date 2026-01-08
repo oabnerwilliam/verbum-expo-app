@@ -10,6 +10,7 @@ export const QuizOption = ({
   status,
   disabled = false,
   isCorrect = false,
+  isSelected = false,
 }: {
   children: React.ReactNode
   onPress?: () => void
@@ -17,13 +18,15 @@ export const QuizOption = ({
   status?: "correct" | "incorrect" | null
   disabled?: boolean
   isCorrect?: boolean
+  isSelected?: boolean
 }) => {
   const buttonStyle = [
     styles.button,
     variant === "primary" ? styles.buttonPrimary : styles.buttonSecondary,
     status === "correct" && styles.buttonCorrect,
     status === "incorrect" && styles.buttonIncorrect,
-    disabled && !isCorrect && styles.buttonDisabled,
+    disabled && !isCorrect && !isSelected && styles.buttonDisabled,
+    isSelected && !status && styles.buttonSelected,
   ]
   const textStyle = [
     styles.buttonText,
@@ -44,15 +47,11 @@ export const QuizOption = ({
           <Ionicons
             name="checkmark-circle"
             size={24}
-            color={colors.success.default}
+            color={colors.success.text}
           />
         )}
         {status === "incorrect" && (
-          <Ionicons
-            name="close-circle"
-            size={24}
-            color={colors.error.default}
-          />
+          <Ionicons name="close-circle" size={24} color={colors.error.text} />
         )}
       </View>
     </Pressable>
@@ -78,6 +77,15 @@ const styles = StyleSheet.create({
     transform: [{ scale: 0.97 }],
     backgroundColor: colors.surface.default,
   },
+  buttonSelected: {
+    backgroundColor: colors.primary.default,
+    transform: [{ scale: 1.03 }],
+    transitionDuration: "300ms",
+  },
+  buttonSelectedText: {
+    color: colors.primary.text,
+    transitionDuration: "300ms",
+  },
   buttonPrimary: {
     borderColor: colors.primary.default,
     borderWidth: 1,
@@ -86,11 +94,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary.default,
   },
   buttonCorrect: {
-    borderColor: colors.success.default,
+    backgroundColor: colors.success.default,
+    borderColor: "transparent",
     borderWidth: 2,
   },
   buttonIncorrect: {
-    borderColor: colors.error.default,
+    backgroundColor: colors.error.default,
+    borderColor: "transparent",
     borderWidth: 2,
   },
   buttonDisabled: {

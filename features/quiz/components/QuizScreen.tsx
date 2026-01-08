@@ -44,11 +44,13 @@ export const QuizScreen = ({
         </Text>
         <QuizOptions
           options={step.options}
-          onOptionPress={quiz.setAnswered}
+          onOptionPress={quiz.setSelectedOption}
           getOptionStatus={quiz.getOptionStatus}
+          getOptionSelected={quiz.getOptionSelected}
           disabled={quiz.isAnswered}
           correctAnswerId={step.correctAnswerId}
           answered={quiz.answered}
+          selected={quiz.selected}
         />
         <View
           style={{
@@ -69,8 +71,17 @@ export const QuizScreen = ({
               type={quiz.toastType}
             />
           )}
-          <QuizButton disabled={!canGoNext} onPress={onNext}>
-            {isLastStep ? "Finalizar" : "Próxima pergunta"}
+          <QuizButton
+            disabled={!quiz.selected}
+            onPress={canGoNext ? onNext : () => quiz.setAnswered(quiz.selected)}
+          >
+            {canGoNext
+              ? isLastStep
+                ? "Finalizar"
+                : "Próxima pergunta"
+              : quiz.selected
+              ? "Responder"
+              : "Selecione uma resposta"}
           </QuizButton>
         </View>
       </View>

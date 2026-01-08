@@ -20,9 +20,10 @@ export const useQuizWizard = ({ steps }: UseQuizWizardProps) => {
 
   useEffect(() => {
     quiz.reset()
-  }, [currentStepIndex])
+  }, [currentStepIndex, quiz.reset])
 
   const nextStep = () => {
+    quiz.reset()
     if (currentStepIndex < steps.length - 1) {
       setCurrentStepIndex((prev) => prev + 1)
     } else {
