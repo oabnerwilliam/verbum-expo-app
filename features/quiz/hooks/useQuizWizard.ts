@@ -1,4 +1,5 @@
-import { router } from "expo-router"
+import { lessonsMocks } from "@/core/constants/lessonsMocks"
+import { router, useLocalSearchParams } from "expo-router"
 import { useEffect, useState } from "react"
 import { useQuiz } from "./useQuiz"
 
@@ -8,15 +9,18 @@ export type QuizStep = {
   correctAnswerId: number
 }
 
-type UseQuizWizardProps = {
-  steps: QuizStep[]
-}
-
-export const useQuizWizard = ({ steps }: UseQuizWizardProps) => {
+export const useQuizWizard = () => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
+  const { lessonId } = useLocalSearchParams<{ lessonId: string }>()
+
+  const lesson = lessonsMocks.find((lesson) => lesson.id === Number(lessonId))
+
+  const steps = lesson?.quiz ?? []
   const currentStep = steps[currentStepIndex]
 
-  const quiz = useQuiz({ correctAnswerId: currentStep.correctAnswerId })
+  const quiz = useQuiz({
+    correctAnswerId: currentStep?.correctAnswerId ?? 0,
+  })
 
   useEffect(() => {
     quiz.reset()
@@ -35,7 +39,8 @@ export const useQuizWizard = ({ steps }: UseQuizWizardProps) => {
   const canGoNext = quiz.isAnswered
 
   return {
-    currentStep,
+    lesson,
+    currentStep: currentStep ?? null,
     currentStepIndex,
     totalSteps: steps.length,
     nextStep,

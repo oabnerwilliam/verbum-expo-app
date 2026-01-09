@@ -1,20 +1,15 @@
 import { colors, spacing } from "@/core/styles/theme"
 import { Ionicons } from "@expo/vector-icons"
-import { router, useLocalSearchParams } from "expo-router"
+import { router } from "expo-router"
 import { StatusBar } from "expo-status-bar"
 import { StyleSheet, TouchableOpacity, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { ProgressBar } from "../components/ui/ProgressBar"
-import { lessonsMocks } from "../core/constants/lessonsMocks"
 import { typography } from "../core/styles/typography"
 import { QuizScreen } from "../features/quiz/components/QuizScreen"
 import { useQuizWizard } from "../features/quiz/hooks/useQuizWizard"
 
 export default function QuizWizard() {
-  const { lessonId } = useLocalSearchParams()
-
-  const lesson = lessonsMocks.find((lesson) => lesson.id === Number(lessonId))
-
   const {
     currentStep,
     currentStepIndex,
@@ -23,7 +18,7 @@ export default function QuizWizard() {
     isLastStep,
     canGoNext,
     quiz,
-  } = useQuizWizard({ steps: lesson?.quiz ?? [] })
+  } = useQuizWizard()
 
   return (
     <SafeAreaView style={styles.container} edges={["top"]}>

@@ -5,10 +5,12 @@ import { ScrollView, StyleSheet, Text, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { SCREEN_WIDTH } from "."
 import { LessonButton } from "../components/ui/LessonButton"
-import { lessonsMocks } from "../core/constants/lessonsMocks"
 import { typography } from "../core/styles/typography"
+import { useRoadmap } from "../features/roadmap/hooks/useRoadmap"
 
 export default function RoadmapScreen() {
+  const { lessons } = useRoadmap()
+
   return (
     <SafeAreaView style={styles.container} edges={["top"]}>
       <StatusBar style="auto" />
@@ -23,7 +25,7 @@ export default function RoadmapScreen() {
             snapToAlignment="start"
             contentContainerStyle={styles.lessonsScrollContent}
           >
-            {lessonsMocks.map((lesson, index) => (
+            {(lessons ?? []).map((lesson, index) => (
               <View
                 key={lesson.id}
                 style={[
