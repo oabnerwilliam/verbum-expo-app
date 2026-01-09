@@ -6,12 +6,14 @@ import {
   Rubik_700Bold,
 } from "@expo-google-fonts/rubik"
 import { useFonts } from "expo-font"
-import { Slot } from "expo-router"
+import { Redirect, Slot, useSegments } from "expo-router"
 import * as SplashScreen from "expo-splash-screen"
 import { useEffect } from "react"
 import "../global.css"
 
 SplashScreen.preventAutoHideAsync()
+
+const loggedIn = true
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -22,6 +24,8 @@ export default function RootLayout() {
     Rubik_700Bold,
   })
 
+  const segments = useSegments()
+
   useEffect(() => {
     if (fontsLoaded) {
       SplashScreen.hideAsync()
@@ -30,6 +34,12 @@ export default function RootLayout() {
 
   if (!fontsLoaded) {
     return null
+  }
+
+  const currentRoute = segments[0]
+
+  if (loggedIn && !currentRoute) {
+    return <Redirect href="/roadmap" />
   }
 
   return <Slot />
