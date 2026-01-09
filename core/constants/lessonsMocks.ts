@@ -1,4 +1,4 @@
-import { QuizStep } from "../hooks/useQuizWizard"
+import { QuizStep } from "../../features/quiz/hooks/useQuizWizard"
 
 interface Lesson {
   id: number

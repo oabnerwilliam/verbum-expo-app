@@ -5,9 +5,9 @@ import { StatusBar } from "expo-status-bar"
 import { StyleSheet, TouchableOpacity, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { ProgressBar } from "../components/ui/ProgressBar"
+import { lessonsMocks } from "../core/constants/lessonsMocks"
 import { typography } from "../core/styles/typography"
 import { QuizScreen } from "../features/quiz/components/QuizScreen"
-import { lessonsMocks } from "../features/quiz/constants/quizMocks"
 import { useQuizWizard } from "../features/quiz/hooks/useQuizWizard"
 
 export default function QuizWizard() {

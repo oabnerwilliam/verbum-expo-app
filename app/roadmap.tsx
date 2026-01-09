@@ -5,8 +5,8 @@ import { ScrollView, StyleSheet, Text, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { SCREEN_WIDTH } from "."
 import { LessonButton } from "../components/ui/LessonButton"
+import { lessonsMocks } from "../core/constants/lessonsMocks"
 import { typography } from "../core/styles/typography"
-import { lessonsMocks } from "../features/quiz/constants/quizMocks"
 
 export default function RoadmapScreen() {
   return (
