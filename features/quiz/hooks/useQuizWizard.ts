@@ -27,7 +27,7 @@ export const useQuizWizard = ({ steps }: UseQuizWizardProps) => {
     if (currentStepIndex < steps.length - 1) {
       setCurrentStepIndex((prev) => prev + 1)
     } else {
-      router.push("/")
+      router.push("/roadmap")
     }
   }
 
