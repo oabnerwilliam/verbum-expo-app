@@ -2,36 +2,24 @@ import { colors, spacing } from "@/core/styles/theme"
 import { typography } from "@/core/styles/typography"
 import { router } from "expo-router"
 import { StatusBar } from "expo-status-bar"
-import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native"
+import { Dimensions, StyleSheet, Text, View } from "react-native"
 import { Button } from "../components/ui/Button"
 
-const { width: SCREEN_WIDTH } = Dimensions.get("window")
+export const { width: SCREEN_WIDTH } = Dimensions.get("window")
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <ScrollView
-        horizontal
-        pagingEnabled
-        showsHorizontalScrollIndicator={false}
-        decelerationRate="normal"
-      >
-        <View style={styles.screen}>
-          <View style={styles.logoContainer}>
-            <Text style={styles.logo}>VERBUM</Text>
-            <Text style={styles.subtitle}>O seu app de estudo bíblico!</Text>
-          </View>
+      <View style={styles.screen}>
+        <View style={styles.logoContainer}>
+          <Text style={styles.logo}>VERBUM</Text>
+          <Text style={styles.subtitle}>O seu app de estudo bíblico!</Text>
         </View>
-
-        <View style={styles.screen}>
-          <View style={styles.contentContainer}>
-            <Button variant="secondary" onPress={() => router.push("/quiz")}>
-              Começar agora
-            </Button>
-          </View>
-        </View>
-      </ScrollView>
+        <Button variant="secondary" onPress={() => router.push("/roadmap")}>
+          Começar agora
+        </Button>
+      </View>
     </View>
   )
 }
@@ -47,6 +35,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    gap: spacing.lg,
   },
   logoContainer: {
     alignItems: "center",
@@ -55,7 +44,7 @@ const styles = StyleSheet.create({
   logo: {
     fontFamily: typography.title.fontFamily,
     fontSize: typography.title.fontSize,
-    fontWeight: typography.title.fontWeight,
+    fontWeight: typography.title.fontWeight as "700",
     color: colors.primary.default,
     textAlign: "center",
   },
@@ -68,7 +57,7 @@ const styles = StyleSheet.create({
   subtitle: {
     fontFamily: typography.body.fontFamily,
     fontSize: typography.body.fontSize,
-    fontWeight: typography.body.fontWeight,
+    fontWeight: typography.body.fontWeight as "400",
     color: colors.text.primary,
     textAlign: "center",
   },
