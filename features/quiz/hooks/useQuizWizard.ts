@@ -12,7 +12,7 @@ export type QuizStep = {
 export const useQuizWizard = () => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
   const { lessonId } = useLocalSearchParams<{ lessonId: string }>()
-
+  // TODO: Buscar a lição no backend quando o backend estiver disponível
   const lesson = lessonsMocks.find((lesson) => lesson.id === Number(lessonId))
 
   const steps = lesson?.quiz ?? []

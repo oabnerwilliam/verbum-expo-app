@@ -18,9 +18,11 @@ import "../global.css"
 
 SplashScreen.preventAutoHideAsync()
 
+// TODO: Substituir por sistema de autenticação quando o backend estiver disponível
 const loggedIn = true
 
 export default function RootLayout() {
+  // TODO: Substituir por loading da queryGraphQL quando o backend estiver disponível
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
