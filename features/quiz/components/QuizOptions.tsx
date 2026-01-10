@@ -1,5 +1,5 @@
+import { spacing } from "@/core/styles/theme"
 import { StyleSheet, View } from "react-native"
-import { spacing } from "../../../core/styles/theme"
 import { QuizOption } from "./QuizOption"
 
 type Option = {

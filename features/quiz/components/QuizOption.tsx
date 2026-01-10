@@ -1,7 +1,7 @@
 import { Ionicons } from "@expo/vector-icons"
 import { Pressable, StyleSheet, Text, View } from "react-native"
-import { colors, radius, spacing } from "../../../core/styles/theme"
-import { typography } from "../../../core/styles/typography"
+import { colors, radius, spacing } from "@/core/styles/theme"
+import { typography } from "@/core/styles/typography"
 
 export const QuizOption = ({
   children,

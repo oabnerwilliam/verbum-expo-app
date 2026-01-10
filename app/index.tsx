@@ -1,9 +1,9 @@
+import { Button } from "@/core/components/Button"
 import { colors, spacing } from "@/core/styles/theme"
 import { typography } from "@/core/styles/typography"
 import { router } from "expo-router"
 import { StatusBar } from "expo-status-bar"
 import { Dimensions, StyleSheet, Text, View } from "react-native"
-import { Button } from "../components/ui/Button"
 
 export const { width: SCREEN_WIDTH } = Dimensions.get("window")
 

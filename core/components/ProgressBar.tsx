@@ -1,6 +1,6 @@
+import { colors, radius, spacing } from "@/core/styles/theme"
 import { useEffect, useRef, useState } from "react"
 import { Animated, LayoutChangeEvent, StyleSheet, View } from "react-native"
-import { colors, radius, spacing } from "../../core/styles/theme"
 
 export const ProgressBar = ({
   current,

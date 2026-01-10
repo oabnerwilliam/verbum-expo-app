@@ -1,10 +1,10 @@
 import { colors, spacing } from "@/core/styles/theme"
+import { typography } from "@/core/styles/typography"
+import { Lessons } from "@/features/roadmap/components/Lessons"
+import { useRoadmap } from "@/features/roadmap/hooks/useRoadmap"
 import { StatusBar } from "expo-status-bar"
 import { StyleSheet, Text, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
-import { typography } from "../core/styles/typography"
-import { Lessons } from "../features/roadmap/components/Lessons"
-import { useRoadmap } from "../features/roadmap/hooks/useRoadmap"
 
 export default function RoadmapScreen() {
   const { lessons } = useRoadmap()

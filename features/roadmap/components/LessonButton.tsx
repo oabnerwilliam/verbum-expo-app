@@ -1,6 +1,6 @@
+import { colors } from "@/core/styles/theme"
+import { typography } from "@/core/styles/typography"
 import { StyleSheet, Text, TouchableOpacity } from "react-native"
-import { colors } from "../../core/styles/theme"
-import { typography } from "../../core/styles/typography"
 
 export const LessonButton = ({
   children,

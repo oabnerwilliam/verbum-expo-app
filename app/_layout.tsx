@@ -1,3 +1,6 @@
+import { colors, spacing } from "@/core/styles/theme"
+import { typography } from "@/core/styles/typography"
+import "@/global.css"
 import { ConcertOne_400Regular } from "@expo-google-fonts/concert-one"
 import {
   Rubik_400Regular,
@@ -12,9 +15,6 @@ import { StatusBar } from "expo-status-bar"
 import { useEffect, useState } from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { SCREEN_WIDTH } from "."
-import { colors, spacing } from "../core/styles/theme"
-import { typography } from "../core/styles/typography"
-import "../global.css"
 
 SplashScreen.preventAutoHideAsync()
 

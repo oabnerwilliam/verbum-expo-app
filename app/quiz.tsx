@@ -1,13 +1,13 @@
+import { ProgressBar } from "@/core/components/ProgressBar"
 import { colors, spacing } from "@/core/styles/theme"
+import { typography } from "@/core/styles/typography"
+import { QuizScreen } from "@/features/quiz/components/QuizScreen"
+import { useQuizWizard } from "@/features/quiz/hooks/useQuizWizard"
 import { Ionicons } from "@expo/vector-icons"
 import { router } from "expo-router"
 import { StatusBar } from "expo-status-bar"
 import { StyleSheet, TouchableOpacity, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
-import { ProgressBar } from "../components/ui/ProgressBar"
-import { typography } from "../core/styles/typography"
-import { QuizScreen } from "../features/quiz/components/QuizScreen"
-import { useQuizWizard } from "../features/quiz/hooks/useQuizWizard"
 
 export default function QuizWizard() {
   const {

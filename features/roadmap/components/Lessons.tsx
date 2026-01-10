@@ -1,6 +1,6 @@
+import { SCREEN_WIDTH } from "@/app"
+import { spacing } from "@/core/styles/theme"
 import { ScrollView, StyleSheet, View } from "react-native"
-import { SCREEN_WIDTH } from "../../../app"
-import { spacing } from "../../../core/styles/theme"
 import { Lesson } from "../hooks/useRoadmap"
 import { LessonItem } from "./Lesson"
 
