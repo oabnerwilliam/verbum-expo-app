@@ -1,9 +1,9 @@
 import { Dimensions, StyleSheet, Text, View } from "react-native"
-import { QuizButton } from "../../../components/ui/QuizButton"
 import { Toast } from "../../../components/ui/Toast"
 import { colors, spacing } from "../../../core/styles/theme"
 import { typography } from "../../../core/styles/typography"
 import { QuizStep, useQuizWizard } from "../hooks/useQuizWizard"
+import { QuizButton } from "./QuizButton"
 import { QuizOptions } from "./QuizOptions"
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window")
@@ -50,7 +50,6 @@ export const QuizScreen = ({
           disabled={quiz.isAnswered}
           correctAnswerId={step.correctAnswerId}
           answered={quiz.answered}
-          selected={quiz.selected}
         />
         <View
           style={{

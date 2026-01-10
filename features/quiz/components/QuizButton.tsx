@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text } from "react-native"
-import { colors, radius, spacing } from "../../core/styles/theme"
-import { typography } from "../../core/styles/typography"
+import { colors, radius, spacing } from "../../../core/styles/theme"
+import { typography } from "../../../core/styles/typography"
 
 export const QuizButton = ({
   children,

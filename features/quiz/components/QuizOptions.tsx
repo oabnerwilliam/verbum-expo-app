@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native"
-import { QuizOption } from "../../../components/ui/QuizOption"
 import { spacing } from "../../../core/styles/theme"
+import { QuizOption } from "./QuizOption"
 
 type Option = {
   id: number
@@ -16,7 +16,6 @@ export const QuizOptions = ({
   children,
   correctAnswerId,
   answered,
-  selected,
 }: {
   options?: Option[]
   onOptionPress?: (optionId: number) => void
@@ -26,7 +25,6 @@ export const QuizOptions = ({
   children?: React.ReactNode
   correctAnswerId?: number
   answered?: number | null
-  selected?: number | null
 }) => {
   return (
     <View style={styles.container}>
