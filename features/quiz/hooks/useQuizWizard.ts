@@ -31,14 +31,15 @@ export const useQuizWizard = () => {
       ) ?? undefined,
   })
 
+  const { reset } = quiz
+
   useEffect(() => {
-    quiz.reset()
-  }, [currentStepIndex, quiz.reset, quiz])
+    reset()
+  }, [currentStepIndex, reset])
 
   const { correctAnswers, incorrectAnswers } = useQuizContext()
 
   const nextStep = () => {
-    quiz.reset()
     if (currentStepIndex < steps.length - 1) {
       setCurrentStepIndex((prev) => prev + 1)
     } else {

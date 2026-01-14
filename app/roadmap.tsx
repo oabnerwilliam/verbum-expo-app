@@ -3,7 +3,7 @@ import { typography } from "@/core/styles/typography"
 import { Lessons } from "@/features/roadmap/components/Lessons"
 import { useRoadmap } from "@/features/roadmap/hooks/useRoadmap"
 import { StatusBar } from "expo-status-bar"
-import { StyleSheet, Text, View } from "react-native"
+import { StyleSheet, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
 export default function RoadmapScreen() {
@@ -13,7 +13,6 @@ export default function RoadmapScreen() {
     <SafeAreaView style={styles.container} edges={["top"]}>
       <StatusBar style="auto" />
       <View style={styles.content}>
-        <Text style={styles.title}>Romanos</Text>
         <Lessons lessons={lessons} />
       </View>
     </SafeAreaView>
@@ -27,8 +26,6 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    justifyContent: "center",
-    paddingBottom: spacing.lg * 2,
   },
   title: {
     fontFamily: typography.title.fontFamily,

@@ -41,9 +41,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   lessonItemEven: {
-    transform: [{ translateY: -40 }],
+    transform: [{ translateX: -60 }],
   },
   lessonItemOdd: {
-    transform: [{ translateY: 40 }],
+    transform: [{ translateX: 60 }],
   },
 })

@@ -15,12 +15,7 @@ export const useQuiz = ({ correctAnswer }: UseQuizProps) => {
   )
   const [selected, setSelected] = useState<number | null>(null)
 
-  const {
-    correctAnswers,
-    setCorrectAnswers,
-    incorrectAnswers,
-    setIncorrectAnswers,
-  } = useQuizContext()
+  const { setCorrectAnswers, setIncorrectAnswers } = useQuizContext()
 
   useEffect(() => {
     setSelected(null)
@@ -37,18 +32,18 @@ export const useQuiz = ({ correctAnswer }: UseQuizProps) => {
       setShowToast(true)
       setIsAnswered(true)
       if (isCorrect) {
-        setCorrectAnswers([
-          ...correctAnswers,
+        setCorrectAnswers((prev) => [
+          ...prev,
           correctAnswer ?? { id: 0, label: "" },
         ])
       } else {
-        setIncorrectAnswers([
-          ...incorrectAnswers,
+        setIncorrectAnswers((prev) => [
+          ...prev,
           correctAnswer ?? { id: 0, label: "" },
         ])
       }
     }
-  }, [answered, correctAnswer])
+  }, [answered, correctAnswer, setCorrectAnswers, setIncorrectAnswers])
 
   const getOptionStatus = (
     optionId: number
@@ -68,17 +63,23 @@ export const useQuiz = ({ correctAnswer }: UseQuizProps) => {
     return false
   }
 
-  const setSelectedOption = useCallback((optionId: number) => {
-    if (selected === null) {
-      setSelected(optionId)
-    } else {
-      setSelected(null)
-    }
-  }, [])
+  const setSelectedOption = useCallback(
+    (optionId: number) => {
+      if (selected === null) {
+        setSelected(optionId)
+      } else {
+        setSelected(null)
+      }
+    },
+    [selected, setSelected]
+  )
 
-  const answerQuestion = useCallback((optionId?: number) => {
-    setAnswered(optionId ?? null)
-  }, [])
+  const answerQuestion = useCallback(
+    (optionId?: number) => {
+      setAnswered(optionId ?? null)
+    },
+    [setAnswered]
+  )
 
   const reset = useCallback(() => {
     setAnswered(null)
@@ -86,7 +87,7 @@ export const useQuiz = ({ correctAnswer }: UseQuizProps) => {
     setShowToast(false)
     setToastType(null)
     setSelected(null)
-  }, [])
+  }, [setAnswered, setIsAnswered, setShowToast, setToastType, setSelected])
 
   return {
     answered,
