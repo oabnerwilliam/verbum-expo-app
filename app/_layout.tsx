@@ -9,7 +9,7 @@ import {
   Rubik_700Bold,
 } from "@expo-google-fonts/rubik"
 import { useFonts } from "expo-font"
-import { Redirect, Slot, useSegments } from "expo-router"
+import { Redirect, Slot, usePathname, useSegments } from "expo-router"
 import * as SplashScreen from "expo-splash-screen"
 import { StatusBar } from "expo-status-bar"
 import { useEffect, useState } from "react"
@@ -25,6 +25,7 @@ const loggedIn = true
 export default function RootLayout() {
   // TODO: Substituir por loading da queryGraphQL quando o backend estiver disponível
   const [loading, setLoading] = useState(true)
+  const pathname = usePathname()
 
   useEffect(() => {
     setTimeout(() => {
@@ -68,7 +69,12 @@ export default function RootLayout() {
       </View>
     )
 
-  return <Slot />
+  return (
+    <>
+      <Slot />
+      {pathname !== "/quiz" && pathname !== "/quiz/result" && <Navbar />}
+    </>
+  )
 }
 
 const styles = StyleSheet.create({

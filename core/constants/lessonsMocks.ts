@@ -225,6 +225,79 @@ export const lesson3: QuizStep[] = [
   },
 ]
 
+export const lesson4: QuizStep[] = [
+  {
+    question: "Quem Paulo usa como exemplo em Romanos 4?",
+    options: [
+      { id: 1, label: "Moisés" },
+      { id: 2, label: "Davi" },
+      { id: 3, label: "Abraão" },
+      { id: 4, label: "Isaías" },
+    ],
+    correctAnswerId: 3,
+  },
+  {
+    question: "Abraão foi justificado por:",
+    options: [
+      { id: 1, label: "Obras" },
+      { id: 2, label: "Lei" },
+      { id: 3, label: "Fé" },
+      { id: 4, label: "Circuncisão" },
+    ],
+    correctAnswerId: 3,
+  },
+  {
+    question: "Quando Abraão foi justificado?",
+    options: [
+      { id: 1, label: "Após a circuncisão" },
+      { id: 2, label: "Antes da circuncisão" },
+      { id: 3, label: "Após a Lei" },
+      { id: 4, label: "Durante o êxodo" },
+    ],
+    correctAnswerId: 2,
+  },
+  {
+    question: "O que a circuncisão foi para Abraão? (Rm 4:11)",
+    options: [
+      { id: 1, label: "A causa da fé" },
+      { id: 2, label: "Um sinal" },
+      { id: 3, label: "O meio da justiça" },
+      { id: 4, label: "A base da promessa" },
+    ],
+    correctAnswerId: 2,
+  },
+  {
+    question: "A promessa veio por meio de:",
+    options: [
+      { id: 1, label: "Lei" },
+      { id: 2, label: "Mérito" },
+      { id: 3, label: "Fé" },
+      { id: 4, label: "Obediência perfeita" },
+    ],
+    correctAnswerId: 3,
+  },
+  {
+    question: "O que a Lei produz? (Rm 4:15)",
+    options: [
+      { id: 1, label: "Justiça" },
+      { id: 2, label: "Promessa" },
+      { id: 3, label: "Ira" },
+      { id: 4, label: "Vida" },
+    ],
+    correctAnswerId: 3,
+  },
+  {
+    question: "Em quem Abraão creu? (Rm 4:17)",
+    options: [
+      { id: 1, label: "Na Lei" },
+      { id: 2, label: "No templo" },
+      { id: 3, label: "No Deus que vivifica" },
+      { id: 4, label: "Nos profetas" },
+    ],
+    correctAnswerId: 3,
+  },
+]
+
 export const lessonsMocks: Lesson[] = [
   {
     id: 1,
@@ -240,5 +313,10 @@ export const lessonsMocks: Lesson[] = [
     id: 3,
     title: "Romanos 3",
     quiz: lesson3,
+  },
+  {
+    id: 4,
+    title: "Romanos 4",
+    quiz: lesson4,
   },
 ]
