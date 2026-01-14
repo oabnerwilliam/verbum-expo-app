@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useState } from "react"
+import { useQuizContext } from "../contexts/QuizContext"
+import { Option } from "./useQuizWizard"
 
 type UseQuizProps = {
-  correctAnswerId: number
+  correctAnswer?: Option
 }
 
-export const useQuiz = ({ correctAnswerId }: UseQuizProps) => {
+export const useQuiz = ({ correctAnswer }: UseQuizProps) => {
   const [answered, setAnswered] = useState<number | null>(null)
   const [isAnswered, setIsAnswered] = useState(false)
   const [showToast, setShowToast] = useState(false)
@@ -13,31 +15,49 @@ export const useQuiz = ({ correctAnswerId }: UseQuizProps) => {
   )
   const [selected, setSelected] = useState<number | null>(null)
 
+  const {
+    correctAnswers,
+    setCorrectAnswers,
+    incorrectAnswers,
+    setIncorrectAnswers,
+  } = useQuizContext()
+
   useEffect(() => {
     setSelected(null)
     setAnswered(null)
     setIsAnswered(false)
     setShowToast(false)
     setToastType(null)
-  }, [correctAnswerId])
+  }, [correctAnswer])
 
   useEffect(() => {
     if (answered !== null) {
-      const isCorrect = answered === correctAnswerId
+      const isCorrect = answered === correctAnswer?.id
       setToastType(isCorrect ? "correct" : "incorrect")
       setShowToast(true)
       setIsAnswered(true)
+      if (isCorrect) {
+        setCorrectAnswers([
+          ...correctAnswers,
+          correctAnswer ?? { id: 0, label: "" },
+        ])
+      } else {
+        setIncorrectAnswers([
+          ...incorrectAnswers,
+          correctAnswer ?? { id: 0, label: "" },
+        ])
+      }
     }
-  }, [answered, correctAnswerId])
+  }, [answered, correctAnswer])
 
   const getOptionStatus = (
     optionId: number
   ): "correct" | "incorrect" | null => {
     if (answered === null) return null
     if (answered === optionId) {
-      return answered === correctAnswerId ? "correct" : "incorrect"
+      return answered === correctAnswer?.id ? "correct" : "incorrect"
     }
-    if (answered !== correctAnswerId && optionId === correctAnswerId) {
+    if (answered !== correctAnswer?.id && optionId === correctAnswer?.id) {
       return "correct"
     }
     return null
@@ -56,6 +76,10 @@ export const useQuiz = ({ correctAnswerId }: UseQuizProps) => {
     }
   }, [])
 
+  const answerQuestion = useCallback((optionId?: number) => {
+    setAnswered(optionId ?? null)
+  }, [])
+
   const reset = useCallback(() => {
     setAnswered(null)
     setIsAnswered(false)
@@ -67,6 +91,7 @@ export const useQuiz = ({ correctAnswerId }: UseQuizProps) => {
   return {
     answered,
     setAnswered,
+    answerQuestion,
     selected,
     setSelected,
     setSelectedOption,

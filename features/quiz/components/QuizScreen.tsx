@@ -72,7 +72,11 @@ export const QuizScreen = ({
           )}
           <QuizButton
             disabled={!quiz.selected}
-            onPress={canGoNext ? onNext : () => quiz.setAnswered(quiz.selected)}
+            onPress={
+              canGoNext
+                ? onNext
+                : () => quiz.answerQuestion(quiz.selected ?? undefined)
+            }
           >
             {canGoNext
               ? isLastStep

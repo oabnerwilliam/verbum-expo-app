@@ -8,8 +8,9 @@ import { router } from "expo-router"
 import { StatusBar } from "expo-status-bar"
 import { StyleSheet, TouchableOpacity, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
+import { QuizProvider } from "../../features/quiz/contexts/QuizContext"
 
-export default function QuizWizard() {
+const LessonQuiz = () => {
   const {
     currentStep,
     currentStepIndex,
@@ -43,6 +44,14 @@ export default function QuizWizard() {
         quiz={quiz}
       />
     </SafeAreaView>
+  )
+}
+
+export default function QuizWizard() {
+  return (
+    <QuizProvider>
+      <LessonQuiz />
+    </QuizProvider>
   )
 }
 

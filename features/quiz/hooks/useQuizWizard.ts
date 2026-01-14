@@ -1,11 +1,17 @@
 import { lessonsMocks } from "@/core/constants/lessonsMocks"
 import { router, useLocalSearchParams } from "expo-router"
 import { useEffect, useState } from "react"
+import { useQuizContext } from "../contexts/QuizContext"
 import { useQuiz } from "./useQuiz"
+
+export interface Option {
+  id: number
+  label: string
+}
 
 export type QuizStep = {
   question: string
-  options: { id: number; label: string }[]
+  options: Option[]
   correctAnswerId: number
 }
 
@@ -19,19 +25,31 @@ export const useQuizWizard = () => {
   const currentStep = steps[currentStepIndex]
 
   const quiz = useQuiz({
-    correctAnswerId: currentStep?.correctAnswerId ?? 0,
+    correctAnswer:
+      currentStep.options.find(
+        (option) => option.id === currentStep.correctAnswerId
+      ) ?? undefined,
   })
 
   useEffect(() => {
     quiz.reset()
-  }, [currentStepIndex, quiz.reset])
+  }, [currentStepIndex, quiz.reset, quiz])
+
+  const { correctAnswers, incorrectAnswers } = useQuizContext()
 
   const nextStep = () => {
     quiz.reset()
     if (currentStepIndex < steps.length - 1) {
       setCurrentStepIndex((prev) => prev + 1)
     } else {
-      router.push("/roadmap")
+      // alert(`${correctAnswers.map((answer) => answer.label).join(", ")}`)
+      router.push({
+        pathname: "/quiz/result",
+        params: {
+          correctAnswers: correctAnswers.length,
+          incorrectAnswers: incorrectAnswers.length,
+        },
+      })
     }
   }
 
