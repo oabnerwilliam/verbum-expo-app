@@ -5,7 +5,7 @@ import { StatusBar } from "expo-status-bar"
 import { useMemo } from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
-import { Button } from "../../core/components/Button"
+import { Button } from "../../core/components/ui/Button"
 
 export default function ResultScreen() {
   const { correctAnswers, incorrectAnswers } = useLocalSearchParams()

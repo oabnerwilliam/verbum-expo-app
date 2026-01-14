@@ -1,4 +1,4 @@
-import { ProgressBar } from "@/core/components/ProgressBar"
+import { ProgressBar } from "@/core/components/ui/ProgressBar"
 import { colors, spacing } from "@/core/styles/theme"
 import { typography } from "@/core/styles/typography"
 import { QuizScreen } from "@/features/quiz/components/QuizScreen"

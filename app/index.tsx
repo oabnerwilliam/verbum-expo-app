@@ -1,4 +1,4 @@
-import { Button } from "@/core/components/Button"
+import { Button } from "@/core/components/ui/Button"
 import { colors, spacing } from "@/core/styles/theme"
 import { typography } from "@/core/styles/typography"
 import { router } from "expo-router"

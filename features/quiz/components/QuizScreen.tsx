@@ -1,4 +1,4 @@
-import { Toast } from "@/core/components/Toast"
+import { Toast } from "@/core/components/ui/Toast"
 import { colors, spacing } from "@/core/styles/theme"
 import { typography } from "@/core/styles/typography"
 import { Dimensions, StyleSheet, Text, View } from "react-native"
