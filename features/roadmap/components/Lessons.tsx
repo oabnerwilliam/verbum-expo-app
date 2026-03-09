@@ -1,17 +1,12 @@
 import { SCREEN_WIDTH } from "@/app"
 import { colors, spacing } from "@/core/styles/theme"
 import { ScrollView, StyleSheet, Text, View } from "react-native"
+import { Divider } from "../../../core/components/ui/Divider"
+import { Book } from "../../../core/constants/lessonsMocks"
 import { typography } from "../../../core/styles/typography"
-import { Lesson } from "../hooks/useRoadmap"
 import { LessonItem } from "./Lesson"
 
-export const Lessons = ({
-  children,
-  lessons,
-}: {
-  lessons: Lesson[]
-  children?: React.ReactNode
-}) => {
+export const Lessons = ({ books }: { books: Book[] }) => {
   return (
     <View style={styles.lessonsContainer}>
       <ScrollView
@@ -19,11 +14,23 @@ export const Lessons = ({
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.lessonsScrollContent}
       >
-        <Text style={styles.title}>Romanos</Text>
-        {children ??
-          (lessons ?? []).map((lesson, index) => (
-            <LessonItem key={lesson.id} lesson={lesson} index={index} />
-          ))}
+        {books.map(({ name, lessons }, bookIndex) => (
+          <>
+            <View style={styles.sectionHeader}>
+              <Text style={styles.title}>{name}</Text>
+              <Divider />
+            </View>
+            <View style={styles.lessonsList}>
+              {lessons.map((lesson, index) => (
+                <LessonItem
+                  key={`${name}-${lesson.id}-${index}`}
+                  lesson={lesson}
+                  index={index}
+                />
+              ))}
+            </View>
+          </>
+        ))}
       </ScrollView>
     </View>
   )
@@ -33,6 +40,7 @@ const styles = StyleSheet.create({
   lessonsContainer: {
     width: SCREEN_WIDTH,
     flex: 1,
+    paddingTop: spacing.lg,
   },
   lessonsScrollContent: {
     flexDirection: "column",
@@ -40,28 +48,40 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.lg,
     alignItems: "center",
     justifyContent: "center",
-    gap: spacing.sm,
+    gap: spacing.lg * 2,
+  },
+  sectionHeader: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: colors.background.default,
+    paddingTop: spacing.md,
+    paddingBottom: spacing.sm,
+    paddingHorizontal: spacing.lg,
   },
   lessonsScrollItem: {
-    width: 150,
-    height: 150,
+    width: 100,
+    height: 100,
     justifyContent: "center",
     alignItems: "center",
   },
-  lessonItemEven: {
-    transform: [{ translateY: -40 }],
-  },
-  lessonItemOdd: {
-    transform: [{ translateY: 40 }],
+  lessonsList: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: spacing.sm,
   },
   title: {
     fontFamily: typography.title.fontFamily,
-    fontSize: 32,
+    fontSize: 20,
     fontWeight: typography.title.fontWeight as "400",
-    color: colors.text.primary,
+    color: colors.text.secondary,
     textAlign: "center",
-    marginBottom: spacing.lg,
-    paddingHorizontal: spacing.lg,
-    paddingTop: spacing.lg,
+    marginBottom: spacing.sm,
+    position: "absolute",
+    top: 0,
+    zIndex: 1,
+    backgroundColor: colors.background.default,
+    paddingHorizontal: spacing.md,
   },
 })

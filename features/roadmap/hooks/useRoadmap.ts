@@ -1,37 +1,24 @@
-import { lessonsMocks } from "@/core/constants/lessonsMocks"
-import { QuizStep } from "@/features/quiz/hooks/useQuizWizard"
+import { Book, booksMocks } from "@/core/constants/lessonsMocks"
 import { useEffect, useState } from "react"
-
-export interface Lesson {
-  id: number
-  title: string
-  quiz: QuizStep[]
-}
-
-interface UseRoadmapReturn {
-  lessons: Lesson[]
-  loading: boolean
-  error: Error | null
-}
 
 /**
  * Hook para buscar as lições do roadmap
  * Atualmente retorna os mocks, mas no futuro será adaptado para fazer queries GraphQL
  */
-export function useRoadmap(): UseRoadmapReturn {
-  const [lessons, setLessons] = useState<Lesson[]>([])
+export const useRoadmap = () => {
+  const [books, setBooks] = useState<Book[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
-    const fetchLessons = async () => {
+    const fetchbooks = async () => {
       try {
-        setLessons(lessonsMocks as Lesson[])
+        setBooks(booksMocks as Book[])
         // TODO: Substituir por query GraphQL quando o backend estiver disponível
         // const { data } = await apolloClient.query({
-        //   query: GET_LESSONS_QUERY,
+        //   query: GET_BOOKS_QUERY,
         // })
-        // setLessons(data.lessons)
+        // setBooks(data.books)
       } catch (err) {
         setError(err as Error)
       } finally {
@@ -39,8 +26,8 @@ export function useRoadmap(): UseRoadmapReturn {
       }
     }
 
-    fetchLessons()
+    fetchbooks()
   }, [])
 
-  return { lessons, loading, error }
+  return { books, loading, error }
 }

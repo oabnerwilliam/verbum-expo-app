@@ -1,7 +1,36 @@
+import { FontAwesome6 } from "@expo/vector-icons"
 import { router } from "expo-router"
 import { StyleSheet, View } from "react-native"
-import { Lesson } from "../hooks/useRoadmap"
+import { Lesson } from "../../../core/constants/lessonsMocks"
+import { colors } from "../../../core/styles/theme"
 import { LessonButton } from "./LessonButton"
+
+const themes = {
+  faith: {
+    icon: "hands-praying",
+    color: colors.primary.default,
+  },
+  teaching: {
+    icon: "book-open",
+    color: colors.primary.default,
+  },
+  justice: {
+    icon: "gavel",
+    color: colors.primary.default,
+  },
+  love: {
+    icon: "heart",
+    color: colors.primary.default,
+  },
+  wisdom: {
+    icon: "lightbulb",
+    color: colors.primary.default,
+  },
+  salvation: {
+    icon: "cross",
+    color: colors.primary.default,
+  },
+}
 
 export const LessonItem = ({
   lesson,
@@ -27,7 +56,12 @@ export const LessonItem = ({
           })
         }
       >
-        {lesson.title}
+        <FontAwesome6
+          name={themes[lesson.theme as keyof typeof themes].icon}
+          solid
+          size={40}
+          color={colors.primary.text}
+        />
       </LessonButton>
     </View>
   )
@@ -35,15 +69,15 @@ export const LessonItem = ({
 
 const styles = StyleSheet.create({
   lessonsScrollItem: {
-    width: 150,
-    height: 150,
+    width: 100,
+    height: 100,
     justifyContent: "center",
     alignItems: "center",
   },
   lessonItemEven: {
-    transform: [{ translateX: -60 }],
+    transform: [{ translateX: -80 }],
   },
   lessonItemOdd: {
-    transform: [{ translateX: 60 }],
+    transform: [{ translateX: 80 }],
   },
 })

@@ -7,13 +7,13 @@ import { StyleSheet, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
 export default function RoadmapScreen() {
-  const { lessons } = useRoadmap()
+  const { books } = useRoadmap()
 
   return (
     <SafeAreaView style={styles.container} edges={["top"]}>
       <StatusBar style="auto" />
       <View style={styles.content}>
-        <Lessons lessons={lessons} />
+        <Lessons books={books} />
       </View>
     </SafeAreaView>
   )
