@@ -9,7 +9,7 @@ import {
   Rubik_700Bold,
 } from "@expo-google-fonts/rubik"
 import { useFonts } from "expo-font"
-import { Redirect, Slot, usePathname, useSegments } from "expo-router"
+import { Redirect, Stack, usePathname, useSegments } from "expo-router"
 import * as SplashScreen from "expo-splash-screen"
 import { StatusBar } from "expo-status-bar"
 import { useEffect, useState } from "react"
@@ -71,7 +71,13 @@ export default function RootLayout() {
 
   return (
     <>
-      <Slot />
+      <Stack
+        screenOptions={{
+          animation: "none",
+          headerShown: false,
+          animationDuration: 0,
+        }}
+      />
       {pathname !== "/quiz" && pathname !== "/quiz/result" && <Navbar />}
     </>
   )

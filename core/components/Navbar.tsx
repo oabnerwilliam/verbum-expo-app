@@ -1,26 +1,20 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
-import { Ionicons } from "@expo/vector-icons"
+import { FontAwesome6 } from "@expo/vector-icons"
 import { router, usePathname } from "expo-router"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { colors, spacing } from "../styles/theme"
+import { Divider } from "./ui/Divider"
 
 export const Navbar = () => {
   const pathname = usePathname()
-
-  const dividerStyle = (path: string) => [
-    styles.divider,
-    {
-      backgroundColor:
-        pathname === path ? colors.primary.default : colors.text.primary,
-    },
-  ]
+  const isActive = (path: string) => pathname === path
 
   return (
     <SafeAreaView style={styles.container} edges={["bottom"]}>
+      <Divider />
       <View style={styles.buttonContainer}>
         <View style={styles.buttonWrapper}>
-          <View style={dividerStyle("/roadmap")} />
           <TouchableOpacity
             style={{
               width: "50%",
@@ -28,15 +22,18 @@ export const Navbar = () => {
               alignItems: "center",
             }}
             onPress={() => {
-              if (pathname !== "/roadmap") router.push("/roadmap")
+              if (pathname !== "/roadmap") {
+                router.push("/roadmap")
+              }
             }}
           >
             <Text style={styles.buttonText}>
-              <Ionicons
-                name="home"
+              <FontAwesome6
+                name="map-location-dot"
+                solid
                 size={30}
                 color={
-                  pathname === "/roadmap"
+                  isActive("/roadmap")
                     ? colors.primary.default
                     : colors.text.primary
                 }
@@ -45,20 +42,24 @@ export const Navbar = () => {
           </TouchableOpacity>
         </View>
         <View style={styles.buttonWrapper}>
-          <View style={dividerStyle("/profile")} />
           <TouchableOpacity
             style={{
               width: "50%",
               justifyContent: "center",
               alignItems: "center",
             }}
-            onPress={() => router.push("/profile")}
+            onPress={() => {
+              if (pathname !== "/profile") {
+                router.push("/profile")
+              }
+            }}
           >
-            <Ionicons
-              name="person"
+            <FontAwesome6
+              name="circle-user"
+              solid
               size={30}
               color={
-                pathname === "/profile"
+                isActive("/profile")
                   ? colors.primary.default
                   : colors.text.primary
               }
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     gap: spacing.md,
-    paddingBottom: spacing.md,
+    paddingBottom: spacing.lg,
   },
   buttonContainer: {
     flexDirection: "row",
@@ -98,6 +99,7 @@ const styles = StyleSheet.create({
   divider: {
     width: "100%",
     height: 1,
+    backgroundColor: colors.surface.overlay,
   },
   buttonWrapper: {
     width: "50%",

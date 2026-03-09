@@ -1,4 +1,4 @@
-import { lessonsMocks } from "@/core/constants/lessonsMocks"
+import { booksMocks } from "@/core/constants/lessonsMocks"
 import { router, useLocalSearchParams } from "expo-router"
 import { useEffect, useState } from "react"
 import { useQuizContext } from "../contexts/QuizContext"
@@ -19,7 +19,10 @@ export const useQuizWizard = () => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
   const { lessonId } = useLocalSearchParams<{ lessonId: string }>()
   // TODO: Buscar a lição no backend quando o backend estiver disponível
-  const lesson = lessonsMocks.find((lesson) => lesson.id === Number(lessonId))
+  const book = booksMocks.find(({ lessons }) =>
+    lessons.find(({ id }) => id === Number(lessonId))
+  )
+  const lesson = book?.lessons.find(({ id }) => id === Number(lessonId))
 
   const steps = lesson?.quiz ?? []
   const currentStep = steps[currentStepIndex]
